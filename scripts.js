@@ -18,11 +18,20 @@ const todosApp = {
           text: "",
           done: false,
         };
+        localStorage.setItem("todos" , JSON.stringify(this.todos))
       } else {
         alert("Você não pode adicionar uma tarefa vazia");
       }
     },
+    storeTodos() {
+      localStorage.setItem("todos" , JSON.stringify(this.todos))
+      console.log('udpdated')
+    }
   },
+  created() {
+  this.todos = localStorage.getItem("todos") ? JSON.parse(localStorage.getItem("todos")) : this.todos;
+}
+
 };
 
 Vue.createApp(todosApp).mount("#app");
